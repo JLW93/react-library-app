@@ -52,8 +52,8 @@ export const DataTable = () => {
 
     let { libraryData, getData } = useGetData();
     let [open, setOpen ] = useState(false);
-    let [ gridData, setData ] = useState<gridData>( { data: {} } );
-    const [selectionModel, setSelectionModel ] = useState<any>( [] );
+    // let [ gridData, setData ] = useState<gridData>( { data: {} } );
+    const [selectionModel, setSelectionModel ] = useState<string[]>( [] );
     const classes = useStyles();
 
     let handleOpen = () => {
@@ -65,7 +65,7 @@ export const DataTable = () => {
     };
 
     let deleteData = () => {
-        server_calls.delete( selectionModel );
+        server_calls.delete( selectionModel[0] );
         getData();
         setTimeout( () => { window.location.reload() }, 1000 );
     };
@@ -73,7 +73,7 @@ export const DataTable = () => {
   return (
     <div style={{ height: 400, width: '100%'}}>
         <DataGrid rows={ libraryData } columns={ columns } pageSize={ 5 } checkboxSelection={ true }
-        onSelectionModelChange={ (item) => {
+        onSelectionModelChange={ (item: any) => {
             setSelectionModel( item )
         }} />
 

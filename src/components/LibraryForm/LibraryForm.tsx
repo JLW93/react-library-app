@@ -7,7 +7,7 @@ import { Button, makeStyles } from '@material-ui/core';
 import { server_calls } from '../../api';
 
 interface LibraryFormProps {
-    id?: string;
+    id?: string[];
     data?: {}
 };
 
@@ -38,15 +38,15 @@ export const LibraryForm = ( props: LibraryFormProps ) => {
     const { register, handleSubmit } = useForm({ })
 
     const onSubmit = ( data: any, event: any) => {
-        if (props.id!) {
-            server_calls.update( props.id!, data );
+        if (props.id! && props.id.length > 0) {
+            server_calls.update( props.id[0]!, data );
             setTimeout ( () => { window.location.reload() }, 1000 );
             event.target.reset();
         } else {
             dispatch(chooseTitle(data.title));
             dispatch(chooseAuthor(data.author));
             dispatch(chooseReleaseDate(data.release_date));
-            dispatch(chooseLength(data._length));
+            dispatch(chooseLength(data.length));
             dispatch(chooseISBN(data.isbn));
             server_calls.create(store.getState());
             setTimeout( () => { window.location.reload() }, 1000 )

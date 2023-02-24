@@ -6,14 +6,14 @@ const rootSlice = createSlice({
         title: 'Title',
         author: 'Author',
         release_date: 'Release Date',
-        _length: 'Length',
+        length: 'Length',
         isbn: 'ISBN'
     },
     reducers: {
         chooseTitle: ( state, action ) => { state.title = action.payload },
         chooseAuthor: ( state, action ) => { state.author = action.payload },
         chooseReleaseDate: ( state, action ) => { state.release_date = action.payload },
-        chooseLength: ( state, action ) => { state._length = action.payload },
+        chooseLength: ( state, action ) => { state.length = action.payload },
         chooseISBN: ( state, action ) => { state.isbn = action.payload }
 
     }
